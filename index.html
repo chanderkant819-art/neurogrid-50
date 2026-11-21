@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>NeuroGrid 50 — Ad-Free Mind Puzzle</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-bar">
+      <div class="brand">
+        <span class="logo-dot">🧠</span>
+        <div>
+          <h1>NeuroGrid 50</h1>
+          <span class="no-ads-pill">100% AD-FREE • DAILY MIND TRAINING</span>
+        </div>
+      </div>
+      <div class="stats-group">
+        <div class="stat-pill" title="Daily Streak">🔥 <span id="streakCount">1</span>d</div>
+        <div class="stat-pill" title="Total Stars">⭐ <span id="totalStars">0</span>/150</div>
+        <button id="stageMapBtn" class="icon-btn" title="50 Stages">🗺️</button>
+        <button id="soundBtn" class="icon-btn" title="Sound">🔊</button>
+      </div>
+    </header>
+
+    <main id="gameView" class="game-view">
+      <div class="stage-meta">
+        <div class="stage-title-box">
+          <span id="stageLabel" class="stage-badge">STAGE 1 / 50</span>
+          <h2 id="stageSubtitle">Warm-Up Circuit</h2>
+        </div>
+        <div class="moves-box">
+          <span>Moves Left</span>
+          <strong id="movesLeft">3</strong>
+        </div>
+      </div>
+
+      <p id="instructionText" class="instruction-text">
+        Watch the glowing sequence carefully, then tap the tiles in exact order!
+      </p>
+
+      <div id="gridContainer" class="grid-container"></div>
+
+      <div class="action-bar">
+        <button id="replayPatternBtn" class="btn secondary-btn">👁️ Replay Hint (<span id="hintsLeft">2</span>)</button>
+        <button id="restartStageBtn" class="btn secondary-btn">🔄 Reset Stage</button>
+      </div>
+    </main>
+
+    <section id="stagesModal" class="overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <span class="no-ads-pill">ZERO ADS • PURE FOCUS</span>
+            <h2>Select Stage (50 Challenges)</h2>
+          </div>
+          <button id="closeStagesBtn" class="icon-btn">✕</button>
+        </div>
+        <p class="modal-desc">Complete each stage to unlock the next challenge. Play daily to maintain your streak!</p>
+        <div id="stagesGrid" class="stages-grid"></div>
+        <button id="continueBtn" class="btn primary-btn full-btn">▶ CONTINUE STAGE <span id="continueStageNum">1</span></button>
+      </div>
+    </section>
+
+    <section id="winModal" class="overlay hidden">
+      <div class="modal-card center-card">
+        <div class="win-badge">✨ STAGE CLEARED ✨</div>
+        <h2 id="winHeading">Stage 1 Complete!</h2>
+        <div id="earnedStarsRow" class="earned-stars">⭐⭐⭐</div>
+        <p id="winSubtext" class="modal-desc">Next stage unlocked! Keep your brain sharp.</p>
+        <div class="modal-actions">
+          <button id="nextStageBtn" class="btn primary-btn">NEXT STAGE ➡</button>
+          <button id="allStagesFromWinBtn" class="btn secondary-btn">🗺️ 50 STAGES</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
